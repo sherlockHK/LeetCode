@@ -123,7 +123,7 @@ C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。
 */
 
 private int calculateLC(String s) {
-        List<String> list = Arrays.asList("M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I");
+        String[] array = new String[]{"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};
         Map<String, Integer> map = new HashMap<>();
         map.put("M", 1000);
         map.put("CM", 900);
@@ -139,8 +139,8 @@ private int calculateLC(String s) {
         map.put("IV", 4);
         map.put("I", 1);
         int result = 0;
-        for (int i = 0; i < list.size(); i++) {
-            String prefix = list.get(i);
+        for (int i = 0; i < array.length; i++) {
+            String prefix = array[i];
             while (s.startsWith(prefix)){
                 Integer value = map.get(prefix);
                 result += value;
@@ -148,9 +148,25 @@ private int calculateLC(String s) {
                 s = s.substring(prefix.length());
             }
         }
-
         return result;
     }
 
 
+/**
+14. 最长公共前缀
+编写一个函数来查找字符串数组中的最长公共前缀。
+如果不存在公共前缀，返回空字符串 ""。
+
+示例 1:
+输入: ["flower","flow","flight"]
+输出: "fl"
+
+示例 2:
+输入: ["dog","racecar","car"]
+输出: ""
+解释: 输入不存在公共前缀。
+
+说明:
+所有输入只包含小写字母 a-z 。
+*/
 
