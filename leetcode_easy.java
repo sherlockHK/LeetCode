@@ -522,7 +522,62 @@ public int[] plusOne(int[] digits){
     return digits;
 }
 
+/**
+67.二进制求和
+给定两个二进制字符串，返回他们的和（用二进制表示）。
+输入为非空字符串且只包含数字 1 和 0。
 
+示例 1:
+输入: a = "11", b = "1"
+输出: "100"
+示例 2:
+输入: a = "1010", b = "1011"
+输出: "10101"
+*/
+public String addBinary(String a, String b){
+    int re = a.length() - b.length();
+    for (int i = 0; i < Math.abs(re); i++) {
+        if (re >0){
+            b = "0" + b;
+        }else if (re < 0){
+            a = "0" + a;
+        }
+    }
+    StringBuilder result = new StringBuilder();
+    boolean isCarry = false;
+    int i = a.length() -1;
+    while (i >= 0) {
+        int p = a.charAt(i) - '0';
+        int q = b.charAt(i) - '0';
+        int sum = p + q + (isCarry ? 1 : 0);
+        isCarry = sum / 2 != 0;
+        result.insert(0, sum % 2);
+        i--;
+    }
+    if (isCarry){
+        result.insert(0,1);
+    }
+    return result.toString();
+}
+
+/**
+69.X的平方根
+实现 int sqrt(int x) 函数。
+计算并返回 x 的平方根，其中 x 是非负整数。
+由于返回类型是整数，结果只保留整数的部分，小数部分将被舍去。
+
+示例 1:
+输入: 4
+输出: 2
+示例 2:
+输入: 8
+输出: 2
+说明: 8 的平方根是 2.82842..., 
+     由于返回类型是整数，小数部分将被舍去。
+*/
+public int mySqrt(int x) {
+        
+}
 
 
 
