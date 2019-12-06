@@ -599,12 +599,13 @@ public int mySqrt(int x) {
 2.  1 阶 + 2 阶
 3.  2 阶 + 1 阶
 */
-//找规律，斐波那契数列，递归，O(n^2)
+//找规律，斐波那契数列，递归，O(2^n)
 public static int climbStairs(int n){
     return n <= 3 ? n : climbStairs(n -1) + climbStairs( n -2);
 }
 
 //类似斐波那契数列 f(n) = f(n-1)+f(n-2) {n > 3}
+//动态规划
 public static int climbStairs2(int n){
     if (n <= 3) return n;
     int first = 2, second = 3;
@@ -616,6 +617,64 @@ public static int climbStairs2(int n){
     }
     return result;
 }
+
+/**
+83.删除排序链表中的重复元素
+给定一个排序链表，删除所有重复的元素，使得每个元素只出现一次。
+
+示例 1:
+输入: 1->1->2
+输出: 1->2
+示例 2:
+输入: 1->1->2->3->3
+输出: 1->2->3
+*/
+//丑陋的实现
+public static ListNode deleteDuplicates(ListNode head) {
+    ListNode list = head;
+    ListNode pre = null;
+    int preValue = 0;
+    while (list != null){
+        if (list.val == preValue && pre != null){
+            //delete
+            pre.next = list.next;
+            preValue = pre.val;
+        }else {
+            pre = list;
+            preValue = list.val;
+        }
+        list = list.next;
+    }
+    return head;
+}
+
+//优雅实现
+public static ListNode deleteDuplicates(ListNode head) {
+    ListNode cur = head;
+    while (cur != null && cur.next != null){
+        if (cur.val == cur.next.val){
+            cur.next = cur.next.next;
+        }else {
+            cur = cur.next;
+        }
+    }
+    return head;
+}
+
+/**
+88.合并两个有序数组
+给定两个有序整数数组 nums1 和 nums2，将 nums2 合并到 nums1 中，
+使得 num1 成为一个有序数组。
+说明:
+初始化 nums1 和 nums2 的元素数量分别为 m 和 n。
+你可以假设 nums1 有足够的空间（空间大小大于或等于 m + n）来保存 nums2 中的元素。
+示例:
+输入:
+nums1 = [1,2,3,0,0,0], m = 3
+nums2 = [2,5,6],       n = 3
+输出: [1,2,2,3,5,6]
+*/
+
 
 
 
