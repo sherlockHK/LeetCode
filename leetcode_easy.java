@@ -674,7 +674,25 @@ nums1 = [1,2,3,0,0,0], m = 3
 nums2 = [2,5,6],       n = 3
 输出: [1,2,2,3,5,6]
 */
+//双指针，从后向前
+public void merge(int[] nums1, int m, int[] nums2, int n) {
+  int pos = m + n - 1, p = m -1, q = n -1;
+    while (p >= 0 && q >= 0){
+        if (nums1[p] >= nums2[q]){
+            nums1[pos--] = nums1[p--];
+        }else {
+            nums1[pos--] = nums2[q--];
+        }
+    }
 
+    while (p >= 0){
+        nums1[pos--] = nums1[p--];
+    }
+    while (q >= 0){
+        nums1[pos--] = nums2[q--];
+    }
+
+}
 
 
 
