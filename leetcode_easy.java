@@ -693,6 +693,21 @@ public void merge(int[] nums1, int m, int[] nums2, int n) {
     }
 }
 
+
+public static class ListNode {
+    public int val;
+    public ListNode next;
+    public ListNode(int x) { val = x; }
+}
+
+public static class TreeNode {
+    public int val;
+    public TreeNode left;
+    public TreeNode right;
+    public TreeNode(int x) { val = x; }
+}
+
+
 /**
 100.相同的树
 给定两个二叉树，编写一个函数来检验它们是否相同。
@@ -767,11 +782,68 @@ public boolean isMirror(TreeNode t1, TreeNode t2){
     return isMirror(t1.left, t2.right) && isMirror(t1.right, t2.left);
 }
 
+//利用队列，迭代
+public boolean isSymmetric(TreeNode root) {
+    if (root == null) return true;
+    Queue<TreeNode> q = new LinkedList<>();
+    q.offer(root.left);
+    q.offer(root.right);
+    while (!q.isEmpty()){
+        TreeNode t1 = q.poll();
+        TreeNode t2 = q.poll();
+        if (t1 == null && t2 == null) continue;
+        if (t1 == null || t2 == null) return false;
+        if (t1.val != t2.val) return false;
+        q.offer(t1.left);
+        q.offer(t2.right);
+        q.offer(t1.right);
+        q.offer(t2.left);
+    }
+    return true;
+}
 
+/**
+104。二叉树的最大深度
+给定一个二叉树，找出其最大深度。
+二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。
+说明: 叶子节点是指没有子节点的节点。
+示例：
+给定二叉树 [3,9,20,null,null,15,7]，
+    3
+   / \
+  9  20
+    /  \
+   15   7
+返回它的最大深度 3 。
+*/
+//递归， DFS
+public int maxDepth(TreeNode root) {
+    if (root == null) return 0;
+    return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
+}
+//迭代，利用队列
 
-
-
-
+/**
+107.二叉树的层次遍历(自底向上)
+给定一个二叉树，返回其节点值自底向上的层次遍历。 
+（即按从叶子节点所在层到根节点所在的层，逐层从左向右遍历）
+例如：
+给定二叉树 [3,9,20,null,null,15,7],
+    3
+   / \
+  9  20
+    /  \
+   15   7
+返回其自底向上的层次遍历为：
+[
+  [15,7],
+  [9,20],
+  [3]
+]
+*/
+public List<List<Integer>> levelOrderBottom(TreeNode root) {
+        
+}
 
 
 
