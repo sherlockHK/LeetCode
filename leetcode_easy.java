@@ -841,8 +841,25 @@ public int maxDepth(TreeNode root) {
   [3]
 ]
 */
+//1.遍历，DFS 2.利用二叉树深度与list size的关系
 public List<List<Integer>> levelOrderBottom(TreeNode root) {
-        
+    List<List<Integer>> re = new ArrayList<>();
+    dfs(root, 1, re);
+    return re;
+}
+
+private void dfs(TreeNode root, int depth, List<List<Integer>> re) {
+    if (root == null) return;
+    List<Integer> list;
+    if (depth > re.size()){
+        list = new ArrayList<>();
+        re.add(0, list);
+    }else {
+        list = re.get(re.size() - depth);
+    }
+    list.add(root.val);
+    dfs(root.left, depth +1, re);
+    dfs(root.right, depth +1, re);
 }
 
 
