@@ -918,7 +918,18 @@ public static TreeNode sortedArrayToBST(int[] nums){
  4   4
  返回false
 */
+public static boolean isBalanced(TreeNode root){
+    if (root == null) return true;
+    if (Math.abs(getDepth(root.left) - getDepth(root.right)) > 1){
+        return false;
+    }
+    return isBalanced(root.left) && isBalanced(root.right);
+}
 
+public static int getDepth(TreeNode t){
+    if (t == null) return 0;
+    return Math.max(getDepth(t.left), getDepth(t.right)) + 1;
+}
 
 
 
