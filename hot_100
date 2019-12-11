@@ -19,6 +19,7 @@ public static int[] twoSum(int[] nums, int target){
     }
     return null;
 }
+
 //利用hash表，查找速度从O(n)->O(1)
 public static int[] twoSum(int[] nums, int target){
     Map<Integer, Integer> m = new HashMap<>();
